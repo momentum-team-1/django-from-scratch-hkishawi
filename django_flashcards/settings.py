@@ -141,6 +141,6 @@ INTERNAL_IPS = [
     # ...
 ]
 
-# django-registration-redux- settings
+# django-registration-redux settings
 
 LOGIN_REDIRECT_URL = '/'

@@ -11,6 +11,17 @@ tests = ["pytest (>=4.3.0,<4.4.0)", "pytest-asyncio (>=0.10.0,<0.11.0)"]
 
 [[package]]
 category = "main"
+description = "Detect confusable usage of unicode homoglyphs, prevent homograph attacks."
+name = "confusable-homoglyphs"
+optional = false
+python-versions = "*"
+version = "3.2.0"
+
+[package.extras]
+cli = ["click"]
+
+[[package]]
+category = "main"
 description = "A high-level Python Web framework that encourages rapid development and clean, pragmatic design."
 name = "django"
 optional = false
@@ -60,6 +71,18 @@ six = ">=1.2"
 [[package]]
 category = "main"
 description = "An extensible user-registration application for Django"
+name = "django-registration"
+optional = false
+python-versions = ">=3.5"
+version = "3.1"
+
+[package.dependencies]
+Django = ">=2.2"
+confusable-homoglyphs = ">=3.0,<4.0"
+
+[[package]]
+category = "main"
+description = "An extensible user-registration application for Django"
 name = "django-registration-redux"
 optional = false
 python-versions = "*"
@@ -72,6 +95,14 @@ name = "pytz"
 optional = false
 python-versions = "*"
 version = "2020.1"
+
+[[package]]
+category = "main"
+description = "Redux in Python"
+name = "redux"
+optional = false
+python-versions = "*"
+version = "0.1.0"
 
 [[package]]
 category = "main"
@@ -102,13 +133,17 @@ dev = ["pytest", "pytest-timeout", "coverage", "tox", "sphinx", "pallets-sphinx-
 watchdog = ["watchdog"]
 
 [metadata]
-content-hash = "22c8a6d4a507fe8eb7111748cb44e5a072f0e972b8a294099a43ce13d37a7344"
+content-hash = "8aec95f75fe8f9f4870d74e9e044e1c4c8a36eedb080846406e0b751b33cbd68"
 python-versions = "^3.7"
 
 [metadata.files]
 asgiref = [
     {file = "asgiref-3.2.7-py2.py3-none-any.whl", hash = "sha256:9ca8b952a0a9afa61d30aa6d3d9b570bb3fd6bafcf7ec9e6bed43b936133db1c"},
     {file = "asgiref-3.2.7.tar.gz", hash = "sha256:8036f90603c54e93521e5777b2b9a39ba1bad05773fcf2d208f0299d1df58ce5"},
+]
+confusable-homoglyphs = [
+    {file = "confusable_homoglyphs-3.2.0-py2.py3-none-any.whl", hash = "sha256:e3ce611028d882b74a5faa69e3cbb5bd4dcd9f69936da6e73d33eda42c917944"},
+    {file = "confusable_homoglyphs-3.2.0.tar.gz", hash = "sha256:3b4a0d9fa510669498820c91a0bfc0c327568cecec90648cf3819d4a6fc6a751"},
 ]
 django = [
     {file = "Django-3.0.6-py3-none-any.whl", hash = "sha256:051ba55d42daa3eeda3944a8e4df2bc96d4c62f94316dea217248a22563c3621"},
@@ -126,6 +161,10 @@ django-extensions = [
     {file = "django-extensions-2.2.9.tar.gz", hash = "sha256:2f81b618ba4d1b0e58603e25012e5c74f88a4b706e0022a3b21f24f0322a6ce6"},
     {file = "django_extensions-2.2.9-py2.py3-none-any.whl", hash = "sha256:b19182d101a441fe001c5753553a901e2ef3ff60e8fbbe38881eb4a61fdd17c4"},
 ]
+django-registration = [
+    {file = "django-registration-3.1.tar.gz", hash = "sha256:2437a098e6e06983e4b4b442680b1c49a2e979f1a0ef3a504beb3a84ff36131d"},
+    {file = "django_registration-3.1-py3-none-any.whl", hash = "sha256:071dce4f4348ff1da338a0a09bda8e34d44c001ab569777e4c88ee21ce5c499e"},
+]
 django-registration-redux = [
     {file = "django-registration-redux-2.8.tar.gz", hash = "sha256:ed525f393c452d3f5044148131cafbf50da7bdec9f78b594450bf01ad67085d4"},
     {file = "django_registration_redux-2.8-py2.py3-none-any.whl", hash = "sha256:ed1ead5398e48bdc37064ab1e269b49301765701984e8d956a641aad2ff3a3ca"},
@@ -133,6 +172,10 @@ django-registration-redux = [
 pytz = [
     {file = "pytz-2020.1-py2.py3-none-any.whl", hash = "sha256:a494d53b6d39c3c6e44c3bec237336e14305e4f29bbf800b599253057fbb79ed"},
     {file = "pytz-2020.1.tar.gz", hash = "sha256:c35965d010ce31b23eeb663ed3cc8c906275d6be1a34393a1d73a41febf4a048"},
+]
+redux = [
+    {file = "redux-0.1.0-py2-none-any.whl", hash = "sha256:081cd31ab984a734075e570097897da75ab5c1b3361598b7bfa3c5c75b8ed35a"},
+    {file = "redux-0.1.0.tar.gz", hash = "sha256:343c10840fc6ab1e9c270e9ea3af394f7ddb63c923d8556ea59cd175268447ff"},
 ]
 six = [
     {file = "six-1.15.0-py2.py3-none-any.whl", hash = "sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"},
