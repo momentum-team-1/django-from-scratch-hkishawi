@@ -9,6 +9,7 @@ class Tag(models.Model):
         return self.tag
 
 class Deck(models.Model):
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="decks", null=True)
     deck_name = models.CharField(max_length=255, null=True, blank =True)
     date = models.DateTimeField(auto_now_add=True, editable=False, blank=True)
     tags = models.ManyToManyField(to="Tag", related_name="decks")
@@ -20,34 +21,12 @@ class Deck(models.Model):
     # edit
 
 class Flashcard(models.Model):
-    Deck = models.ForeignKey(to=Deck, on_delete=models.CASCADE, related_name="flashcards")
+    deck = models.ForeignKey(to=Deck, on_delete=models.CASCADE, related_name="flashcards")
     flashcard_name = models.CharField(max_length=255, null=True, blank=True)
-    
+    prompt = models.CharField(max_length=255, null=True, blank=True)
+    answer = models.CharField(max_length=255, null=True, blank=True)
     # attempts
     # success
     def __str__(self):
         return f"{self.flashcard_name}"
-    # add
-    # delete
-    # edit
-
-class Prompt(models.Model):
-    Deck = models.ForeignKey(to=Flashcard, on_delete=models.CASCADE, related_name='prompts')
-    prompt = models.CharField(max_length=255, null=True, blank=True)
-    # add
-    # delete
-    # edit
-
-    def __str__(self):
-        return f"{self.prompt}"
-
-class Answer(models.Model):
-    Deck = models.ForeignKey(to=Flashcard, on_delete=models.CASCADE, related_name='answers')
-    answer = models.CharField(max_length=255, null=True, blank=True)
-
-    def __str__(self):
-        return f"{self.answer}"
-
-    # add
-    # delete
-    # edit
+  

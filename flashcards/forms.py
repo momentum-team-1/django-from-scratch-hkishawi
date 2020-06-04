@@ -1,13 +1,14 @@
 from django import forms
 from .models import Flashcard
 
-# class FlashcardForm(forms.ModelForm):
-#     class Meta: 
-#         model = Deck
-#         fields = [
-#             'deck_name',
-#             'date',
-#         ]
+class DeckForm(forms.ModelForm):
+    class Meta:
+        model = Deck
+        fields = [
+            'deck_name',
+            'date',
+            'tags',
+        ]
 
 # class Flashcard(forms.ModelForm):
 #     class Meta: 

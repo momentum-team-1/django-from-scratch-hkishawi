@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Your decks</h2>
+
+<ul<>
+    {% for deck in decks %}
+    <li><a href="{% url 'deck_detail' deck_pk=deck.pk %}"></a>{{ deck.title }}</li>
+    <!-- <li>{{ recipe.title }}</li> -->
+    {% endfor %}
+</ul>
+    
+{% endblock %}
+ 
+ 

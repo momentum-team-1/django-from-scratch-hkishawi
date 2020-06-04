@@ -1,4 +1,4 @@
-"""django_flashcards URL Configuration
+"""django_decks URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
@@ -20,8 +20,9 @@ from flashcards import views as flashcards_views
 
 
 urlpatterns = [
-    path('', flashcards_views.homepage), 
-    # path('flashcards/', )name='homepage'
+    path('', flashcards_views.homepage, name="homepage"), 
+    path('decks/', flashcards_views.deck_list, name='deck_list'),
+    path('decks/new/', flashcards_views.add_deck, name='add_deck'),
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.default.urls')),
     ]   
@@ -30,7 +31,6 @@ if settings.DEBUG:
     import debug_toolbar
     urlpatterns = [
         path('__debug__/', include(debug_toolbar.urls)),
-
 
         # For django versions before 2.0:
         # url(r'^__debug__/', include(debug_toolbar.urls)),
