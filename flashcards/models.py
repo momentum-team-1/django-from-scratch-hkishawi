@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Model
+from users.models import User
 
 # Create your models here.
 class Tag(models.Model):
@@ -15,24 +15,39 @@ class Deck(models.Model):
 
     def __str__(self):
         return self.title
+    # add
+    # delete
+    # edit
 
 class Flashcard(models.Model):
     Deck = models.ForeignKey(to=Deck, on_delete=models.CASCADE, related_name="flashcards")
     flashcard_name = models.CharField(max_length=255, null=True, blank=True)
-    answer = models.CharField(max_length=255, null=True, blank=True)
+    
     # attempts
     # success
     def __str__(self):
-        return "flashcard"
+        return f"{self.flashcard_name}"
+    # add
+    # delete
+    # edit
 
 class Prompt(models.Model):
     Deck = models.ForeignKey(to=Flashcard, on_delete=models.CASCADE, related_name='prompts')
+    prompt = models.CharField(max_length=255, null=True, blank=True)
+    # add
+    # delete
+    # edit
 
     def __str__(self):
-        return "prompt"
+        return f"{self.prompt}"
 
 class Answer(models.Model):
-    Deck = models.ForeignKey(to=Prompt, on_delete=models.CASCADE, related_name='answers')
+    Deck = models.ForeignKey(to=Flashcard, on_delete=models.CASCADE, related_name='answers')
+    answer = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
-        return "answer"
+        return f"{self.answer}"
+
+    # add
+    # delete
+    # edit
