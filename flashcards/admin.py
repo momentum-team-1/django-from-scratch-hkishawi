@@ -8,3 +8,4 @@ admin.site.register(Deck)
 admin.site.register(Flashcard)
 # admin.site.register(Prompt)
 # admin.site.register(Answer)
+

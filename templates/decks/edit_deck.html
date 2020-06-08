@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>edit deck</h2>
+
+<form action="{% url 'edit_deck' deck_pk=deck.pk %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}  
+   
+    {% comment %}
+    <!--this renders data in <p> tags-->
+    {% endcomment %}
+    
+    <div>
+        <button type="submit">update deck name</button>
+    </div>
+</form>
+
+{% endblock %}
+
+

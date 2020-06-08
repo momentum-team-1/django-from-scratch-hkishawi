@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+ 
+
+{% block content %}
+
+<h2>{{ deck.deck }}</h2>
+
+<!-- <p>
+    <a href="{% url 'deck_detail' deck_pk=deck.pk %}">{{ deck.deck_list }}</a>
+</p> -->
+
+<h3>{{ deck.deck_name }}</h3>
+
+<!-- <h3><a href="{% url 'deck_detail' deck_pk=deck.pk %}">{{ flashcard.prompt}}</a></h3> -->
+
+<ol>
+    {% for flashcard in deck.flashcards.all %}
+    <li>
+    <div><a href="{% url 'view_answer' card_pk=flashcard.pk %}">{{ flashcard.prompt }}</a></div>
+    
+    <a class="" href="{% url 'delete_flashcard' card_pk=flashcard.pk %}">delete flashcard</a>
+    </li>
+    {% endfor %}
+</ol>
+
+<p><a href="{% url 'add_flashcard' deck_pk=deck.pk %}">add flashcard</a></p>
+
+<p class="">
+    <a class="" href="{% url 'delete_deck' deck_pk=deck.pk %}">delete deck</a>
+</p>
+
+<form action="{% url 'edit_deck' deck_pk=deck.pk %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div>
+        <button type="submit">edit deck</button>
+    </div>
+</form>
+
+<!-- <ul>
+    {% for flashcard in deck.flashcards.all %}
+    <li>{{ flashcard.text }}</li>
+    {% endfor %}
+</ul> -->
+
+{% endblock %}
+

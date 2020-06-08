@@ -20,9 +20,16 @@ from flashcards import views as flashcards_views
 
 
 urlpatterns = [
-    path('', flashcards_views.homepage, name="homepage"), 
+    path('', flashcards_views.homepage, name='homepage'), 
     path('decks/', flashcards_views.deck_list, name='deck_list'),
     path('decks/new/', flashcards_views.add_deck, name='add_deck'),
+    path('decks/<int:deck_pk>/delete_deck/', flashcards_views.delete_deck, name='delete_deck'),
+    path('decks/<int:deck_pk>/edit/', flashcards_views.edit_deck, name='edit_deck'),
+    path('decks/<int:deck_pk>/add_flashcard/', flashcards_views.add_flashcard, name='add_flashcard'),
+    path('decks/<int:card_pk>/view_prompt/', flashcards_views.view_prompt, name='view_prompt'),
+    path('decks/<int:card_pk>/view_answer/', flashcards_views.view_answer, name='view_answer'),
+    path('decks/<int:card_pk>/delete_flashcard/', flashcards_views.delete_flashcard, name='delete_flashcard'), 
+    path('decks/<int:deck_pk>/', flashcards_views.deck_detail, name='deck_detail'),
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.default.urls')),
     ]   

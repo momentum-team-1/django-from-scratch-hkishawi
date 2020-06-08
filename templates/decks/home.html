@@ -3,11 +3,15 @@
 
 {% block content %}
 
+{% if user.is_authenticated %}
+
     <div>
-        <h2>welcome to Deck!</h2>
-        <p> please <a href="{% url 'auth_login' %}">login</a> or <a href="{% url 'registration_register' %}">create a new account</a>.</p>
+        <h2>welcome to deck!</h2>
+        <p> please <a href="{% url 'auth_login' %}">login</a> or <a href="{% url 'registration_register' %}">create a new account</a>.
+        </p>
     </div>
  
+{% endif %}
 {% endblock %}
 
 {'test': True}

@@ -12,26 +12,21 @@
 </head>
 <body class="sans-serif">
   <div class="mw8 center ph3 pv4">
-      <div class="bg-washed-green">
-       <h1><a class="no-underline" href="{% url 'homepage' %}">Flashcard Decks</a></h1>
-          {% if user.is_authenticated %}
+      <div class="bg-moon-gray">
+       <h1><a class="i" class="black no-underline" href="{% url 'homepage' %}">house of flashcards</a></h1>
+        {% if user.is_authenticated %}
           <div>
-            Hello, {{ user.username }}!    
-            <a href="{% url 'auth_logout' %}">Logout</a>
+            hello, {{ user.username }}!    
+            <a href="{% url 'auth_logout' %}">logout</a>
+            <a href="{% url 'homepage' %}"">home</a>
           </div>
-      </div>
-      {% endif %}
-    <!-- <div class="">
-      <h1><a class="" href="{% url 'homepage' %}">Flashcards</a></h1>
-      {% if user.is_authenticated %}
-      <div>
-        Hello, {{ user.username }}!
-        <a href="{% url 'auth_logout' %}">Logout</a>
-      </div>
-      {% endif %}
-    </div> -->
-    {% block content %}
+    
+        {% endif %}
+       </div>
+    <div class="bg-near-white">    
+    {% block content %}   
     {% endblock %}
-  </div>
+    </div>
+        
 </body>
 </html>

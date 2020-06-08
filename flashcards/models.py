@@ -11,11 +11,11 @@ class Tag(models.Model):
 class Deck(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="decks", null=True)
     deck_name = models.CharField(max_length=255, null=True, blank =True)
-    date = models.DateTimeField(auto_now_add=True, editable=False, blank=True)
+    # date = models.DateField(auto_now=False, auto_now_add=False, editable=False, blank=True)
     tags = models.ManyToManyField(to="Tag", related_name="decks")
 
     def __str__(self):
-        return self.title
+        return self.deck_name
     # add
     # delete
     # edit
@@ -28,5 +28,7 @@ class Flashcard(models.Model):
     # attempts
     # success
     def __str__(self):
-        return f"{self.flashcard_name}"
+        return f"{self.prompt} {self.answer}"
+  
+
   

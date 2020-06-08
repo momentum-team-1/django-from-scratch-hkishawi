@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<a href="{% url 'deck_detail' deck_pk=deck.pk %}">return to {{ deck.deck_name}.</a>
+
+<h1>answer</h1>
+
+<a href="{% url 'view_prompt' deck_pk=deck.pk %}">return to prompts.</a>
+
+{% endblock %}
