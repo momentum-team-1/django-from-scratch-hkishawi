@@ -5,8 +5,9 @@
     <a href="{% url 'add_deck' %}">add a new deck</a>
 </h2>
 
+
 <h2>your decks</h2>
-<ul>
+<ul<>
     {% for deck in decks %}
     <li>
         <a href="{% url 'deck_detail' deck_pk=deck.pk %}"></a>{{ deck.deck_name }}<br>

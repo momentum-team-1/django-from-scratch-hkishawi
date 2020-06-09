@@ -29,6 +29,7 @@ urlpatterns = [
     path('decks/<int:card_pk>/view_prompt/', flashcards_views.view_prompt, name='view_prompt'),
     path('decks/<int:card_pk>/view_answer/', flashcards_views.view_answer, name='view_answer'),
     path('decks/<int:card_pk>/delete_flashcard/', flashcards_views.delete_flashcard, name='delete_flashcard'), 
+    path('decks/<int:card_pk>/edit_flashcard/', flashcards_views.edit_flashcard, name='edit_flashcard'),
     path('decks/<int:deck_pk>/', flashcards_views.deck_detail, name='deck_detail'),
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.default.urls')),

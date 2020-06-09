@@ -87,12 +87,14 @@ def add_flashcard(request, deck_pk):
 @login_required
 def view_prompt(request, card_pk):
     flashcard = get_object_or_404(Flashcard, pk=card_pk)
-    return render(request, "decks/view_prompt.html", {"flashcard": flashcard})
+    return render(request, "decks/view_prompt.html", 
+    {"flashcard": flashcard})
 
 @login_required
 def view_answer(request, card_pk):
     flashcard = get_object_or_404(Flashcard, pk=card_pk)
-    return render(request, "decks/view_answer.html", {"flashcard": flashcard})
+    return render(request, "decks/view_answer.html", 
+    {"flashcard": flashcard})
 
 @login_required
 def delete_flashcard(request, card_pk):
@@ -100,6 +102,24 @@ def delete_flashcard(request, card_pk):
 
     if request.method == "POST":
         flashcard.delete()
-        return redirect(to='deck_detail')
+        return redirect(to='deck_detail', deck_pk=flashcard.deck.pk)
  
-    return render(request, "decks/delete_flashcard.html", { "flashcard": flashcard }) 
+    return render(request, "decks/delete_flashcard.html", 
+    { "flashcard": flashcard }) 
+
+@login_required
+def edit_flashcard(request, card_pk):
+    flashcard = get_object_or_404(Flashcard, pk=card_pk)
+
+    if request.method == "POST":
+        form = FlashcardForm (instance=flashcard, data=request.POST)
+        if form.is_valid():
+            deck = form.save()
+            return redirect(to='deck_detail', deck_pk=flashcard.deck.pk)
+    else: 
+        form = FlashcardForm(instance=flashcard)
+
+    return render(request, "decks/deck_detail.html", {
+        "form": form,
+        "flashcard": flashcard
+    })
