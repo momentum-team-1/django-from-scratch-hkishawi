@@ -2,10 +2,11 @@
 
 {% block content %}
 
-<a href="{% url 'view_answer' pk=deck.pk %}">return to {{ deck.deck_name}.</a>
+<a href="{% url 'view_prompt' card_pk=flashcard.pk %}">return to {% url 'deck_detail'}.</a>
 
-<h1>answer</h1>
+<h3>answer</h3>
+<h1>{{ flashcard.answer }}</h1>
 
-<a href="{% url 'view_answer' deck_pk=deck.pk %}">go to next prompt.</a>
+<a href="{% url 'view_answer' card_pk=flashcard.pk %}">go to next prompt.</a>
 
 {% endblock %}

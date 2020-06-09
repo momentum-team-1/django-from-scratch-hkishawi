@@ -90,9 +90,9 @@ def view_prompt(request, card_pk):
     return render(request, "decks/view_prompt.html", {"flashcard": flashcard})
 
 @login_required
-def view_answer(request, deck_pk):
-    deck = get_object_or_404(request.user.decks, pk=deck.pk)
-    return render(request, "decks/view_answer.html", {"deck":deck})
+def view_answer(request, card_pk):
+    flashcard = get_object_or_404(Flashcard, pk=card_pk)
+    return render(request, "decks/view_answer.html", {"flashcard": flashcard})
 
 @login_required
 def delete_flashcard(request, card_pk):

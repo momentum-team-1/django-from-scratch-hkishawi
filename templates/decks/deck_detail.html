@@ -17,10 +17,9 @@
     {% for flashcard in deck.flashcards.all %}
     <li>
     <div><a href="{% url 'view_answer' card_pk=flashcard.pk %}">{{ flashcard.prompt }}</a></div>
-    
     <a class="" href="{% url 'delete_flashcard' card_pk=flashcard.pk %}">delete flashcard</a>
     </li>
-    {% endfor %}
+    {% endfor %};
 </ol>
 
 <p><a href="{% url 'add_flashcard' deck_pk=deck.pk %}">add flashcard</a></p>
