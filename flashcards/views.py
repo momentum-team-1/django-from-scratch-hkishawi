@@ -112,14 +112,15 @@ def edit_flashcard(request, card_pk):
     flashcard = get_object_or_404(Flashcard, pk=card_pk)
 
     if request.method == "POST":
-        form = FlashcardForm (instance=flashcard, data=request.POST)
+        form = FlashcardForm(instance=flashcard, data=request.POST)
         if form.is_valid():
-            deck = form.save()
-            return redirect(to='deck_detail', deck_pk=flashcard.deck.pk)
+            flashcard = form.save()
+            return redirect(to='edit_flashcard', card_pk=flashcard.pk)
     else: 
         form = FlashcardForm(instance=flashcard)
 
-    return render(request, "decks/deck_detail.html", {
+    return render(request, "decks/edit_flashcard.html", {
         "form": form,
-        "flashcard": flashcard
+        "flashcard": flashcard,
     })
+

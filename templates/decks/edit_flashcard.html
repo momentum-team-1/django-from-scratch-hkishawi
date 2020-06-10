@@ -2,14 +2,20 @@
 
 {% block content %}
 
-<h2>edit flashcard</h2>
+<h2>edit this flashcard</h2>
+
+<h4>prompt: {{ flashcard.prompt }}</h4>
+<h4>answer: {{ flashcard.answer }}</h4>
 
 <form action="{% url 'edit_flashcard' card_pk=flashcard.pk %}" method="POST">
     {% csrf_token %}
     {{ form.as_p }}  
-    
     <div>
-        <button type="submit">update flashcard</button>
+       
+        <button type="submit"> 
+            <a href="{% url 'deck_detail' deck_pk=flashcard.deck.pk %}">update flashcard</a>
+        </button>
+        
     </div>
 </form>
 

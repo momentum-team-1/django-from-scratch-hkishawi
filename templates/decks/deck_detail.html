@@ -21,9 +21,13 @@
     </div>
 
     <div>
-        <form action="{% url 'edit_flashcard' card_pk=flashcard.pk %}">
+    <form action="{% url 'edit_flashcard' card_pk=flashcard.pk %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div> 
             <button type="submit">edit flashcard</button>
-        </form>
+        </div>
+    </form>
     </div>
     <br>
     </li>
