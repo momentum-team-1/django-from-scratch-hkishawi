@@ -25,10 +25,10 @@ class Flashcard(models.Model):
     flashcard_name = models.CharField(max_length=255, null=True, blank=True)
     prompt = models.CharField(max_length=255, null=True, blank=True)
     answer = models.CharField(max_length=255, null=True, blank=True)
+    star = models.BooleanField(default=False)
     # attempts
     # success
     def __str__(self):
         return f"{self.prompt} {self.answer}"
   
 
-  

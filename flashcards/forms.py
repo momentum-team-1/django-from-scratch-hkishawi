@@ -15,7 +15,7 @@ class FlashcardForm(forms.ModelForm):
         model = Flashcard
         fields = [
             'prompt',
-            'answer'
+            'answer',
+            'star',
         ]
 
-#

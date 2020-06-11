@@ -53,7 +53,7 @@ def edit_deck(request, deck_pk):
     deck = get_object_or_404(request.user.decks, pk=deck_pk)
 
     if request.method == "POST":
-        form = DeckForm(instance=deck, data=request.POST)
+        form = DeckForm(instance=deck_name, data=request.POST)
         if form.is_valid():
             deck = form.save()
             return redirect(to='edit_deck', deck_pk=deck.pk)
@@ -85,6 +85,12 @@ def add_flashcard(request, deck_pk):
     })
 
 @login_required
+def view_star(request, card_pk):
+    flashcard = get_object_or_404(Flashcard, pk=card_pk)
+    return render(request, "decks/view_prompt.html",
+    {"flashcard": flashcard})
+
+@login_required
 def view_prompt(request, card_pk):
     flashcard = get_object_or_404(Flashcard, pk=card_pk)
     return render(request, "decks/view_prompt.html", 
@@ -114,8 +120,9 @@ def edit_flashcard(request, card_pk):
     if request.method == "POST":
         form = FlashcardForm(instance=flashcard, data=request.POST)
         if form.is_valid():
-            flashcard = form.save()
-            return redirect(to='edit_flashcard', card_pk=flashcard.pk)
+            flashcard = form.save(commit=False)
+            flashcard.save()
+            return redirect(to='deck_detail', deck_pk=flashcard.deck.pk)
     else: 
         form = FlashcardForm(instance=flashcard)
 
@@ -124,3 +131,12 @@ def edit_flashcard(request, card_pk):
         "flashcard": flashcard,
     })
 
+def show_random_deck(request):
+    deck = request.user.decks.order_by('?').first()
+    flashcard_form = FlashcardForm()
+    return render(request, "decks/deck_detail.html", {
+        "deck": deck,
+        "flashcard_form": flashcard_form,
+    })
+
+    

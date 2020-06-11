@@ -12,11 +12,14 @@
     {{ form.as_p }}  
     <div>
        
-        <button type="submit"> 
-            <a href="{% url 'deck_detail' deck_pk=flashcard.deck.pk %}">update flashcard</a>
+        <button type="submit">update flashcard
         </button>
         
     </div>
 </form>
+<br>
+ 
+<a class="" href="{% url 'deck_detail' deck_pk=flashcard.deck.pk %}">return to deck</a>
+ 
 
 {% endblock %}
