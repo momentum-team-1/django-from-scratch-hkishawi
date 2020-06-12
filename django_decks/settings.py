@@ -52,7 +52,8 @@ INSTALLED_APPS = [
     # Project-specific
     'users',
     'flashcards',
-]
+    'star_ratings',
+]   
 
 MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
@@ -82,6 +83,11 @@ TEMPLATES = [
         },
     },
 ]
+
+TEMPLATE_CONTEXT_PROCESSORS = [
+        'django.core.context_processors.request',
+]
+
 
 WSGI_APPLICATION = 'django_decks.wsgi.application'
 

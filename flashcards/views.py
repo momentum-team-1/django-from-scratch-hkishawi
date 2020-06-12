@@ -53,14 +53,14 @@ def edit_deck(request, deck_pk):
     deck = get_object_or_404(request.user.decks, pk=deck_pk)
 
     if request.method == "POST":
-        form = DeckForm(instance=deck_name, data=request.POST)
+        form = DeckForm(instance=deck, data=request.POST)
         if form.is_valid():
             deck = form.save()
             return redirect(to='edit_deck', deck_pk=deck.pk)
     else: 
         form = DeckForm(instance=deck)
 
-    return render(request, "decks/deck_detail.html", {
+    return render(request, "decks/edit_deck.html", {
         "form": form,
         "deck": deck
     })

@@ -1,7 +1,13 @@
 {% extends "base.html" %}
- 
 
 {% block content %}
+{% load ratings %}
+
+{% block scripts %}
+{% load static %}
+
+<script src="{% static 'js/reveal.js' %}" defer></script>
+
 
 <h2>{{ deck.deck }}</h2>
 
@@ -10,39 +16,39 @@
 <h3>{{ deck.deck_name }}</h3>
 
  
- 
+
 <div>
-<ol>
+<div class="flex flex-wrap">
     {% for flashcard in deck.flashcards.all %}
-    <li>
-    <div><a href="{% url 'view_answer' card_pk=flashcard.pk %}">{{ flashcard.prompt }}</a></div>
-    
-    <form></form><input type='checkbox'>{{ flashcard.star }}</input></form>
+
+    <div class="br--bottom">
+
+    <div class="card-container">
+        <div class="front">{{ flashcard.prompt }}</div>
+        <div class="back">answer: {{flashcard.answer}}</div>
+    </div>
     
     <div>
-    <button type="submit"><a class="" href="{% url 'delete_flashcard' card_pk=flashcard.pk %}">delete flashcard</a></button>
+    <a class="no-underline ma2 f6 fl hover-bg-orange hover-white b--orange link ba ph3 pv2 dib purple" href="{% url 'delete_flashcard' card_pk=flashcard.pk %}">delete flashcard</a> 
     </div>
 
     <div>
-    <button type="submit"><a href="{% url 'edit_flashcard' card_pk=flashcard.pk %}">edit flashcard</a>
-    </button>
+     <a class="no-underline ma2 f6 fl hover-bg-purple hover-white b--purple link ba ph3 pv2 dib purple" href="{% url 'edit_flashcard' card_pk=flashcard.pk %}">edit flashcard</a>
     </div>
     <br>
-    </li>
+    </div>
     {% endfor %}
-</ol>
 </div>
-
-
-<p><a href="{% url 'add_flashcard' deck_pk=deck.pk %}">add flashcard</a></p>
+{% endblock %}  
+<p><a class="no-underline black hover-orange" href="{% url 'add_flashcard' deck_pk=deck.pk %}">add flashcard</a></p>
 
 <div>
 <p class="">
-    <a class="" href="{% url 'delete_deck' deck_pk=deck.pk %}">delete deck</a>
+    <a class="no-underline black hover-orange" href="{% url 'delete_deck' deck_pk=deck.pk %}">delete deck</a>
 </p>
 
-<a href="{% url 'edit_deck' deck_pk=deck.pk %}">
-        <button type="submit">edit deck</button></a>
+<a class="no-underline black hover-orange" href="{% url 'edit_deck' deck_pk=deck.pk %}">
+        <p>update deck name</p></a>
 
 
 
