@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+<h2>your decks</h2>
+
+<div class="flex flex-wrap">
+    {% for deck in decks %}
+  <div class="w-25 pa1 mr1 center">  
+      <div class="">
+        <a class="black no-underline hover-orange" href="{% url 'deck_detail' deck_pk=deck.pk %}">{{ deck.deck_name }}</a><br>
+        <a class="ma2 f6 fl hover-bg-orange hover-white b--orange link ba ph3 pv2 dib purple" href="{% url 'delete_deck' deck_pk=deck.pk %}">delete this deck
+        </a>
+        <form action="{% url 'edit_deck' deck_pk=deck.pk %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div>
+                <a class="ma2 f6 fl hover-bg-purple hover-white b--purple link ba ph3 pv2 dib purple" href="{% url 'edit_deck' deck_pk=deck.pk %}">update deck name</a>
+            </div>
+        </form>
+    </div> <br>
+    </div>
+
+    {% endfor %}
+
+</div>
+ 
+<div class="">
+<p>
+    <a class="black hover-orange no-underline" href="{% url 'add_deck' %}">add a deck</a>
+</p>
+
+<p>
+    <a class="black hover-orange no-underline" href="{% url 'random_deck' %}">get random deck</a>
+</p>
+</div>
+{% endblock %}
+ 
+ 

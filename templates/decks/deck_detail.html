@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load ratings %}
+
+{% block scripts %}
+{% load static %}
+
+<script src="{% static 'js/reveal.js' %}" defer></script>
+
+
+<h2>{{ deck.deck }}</h2>
+
+ 
+
+<h3>{{ deck.deck_name }}</h3>
+
+ 
+
+<div>
+<div class="flex flex-wrap">
+    {% for flashcard in deck.flashcards.all %}
+
+    <div class="br--bottom">
+
+    <div class="card-container">
+        <div class="front">{{ flashcard.prompt }}</div>
+        <div class="back">answer: {{flashcard.answer}}</div>
+    </div>
+    
+    <div>
+    <a class="no-underline ma2 f6 fl hover-bg-orange hover-white b--orange link ba ph3 pv2 dib purple" href="{% url 'delete_flashcard' card_pk=flashcard.pk %}">delete flashcard</a> 
+    </div>
+
+    <div>
+     <a class="no-underline ma2 f6 fl hover-bg-purple hover-white b--purple link ba ph3 pv2 dib purple" href="{% url 'edit_flashcard' card_pk=flashcard.pk %}">edit flashcard</a>
+    </div>
+    <br>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}  
+<p><a class="no-underline black hover-orange" href="{% url 'add_flashcard' deck_pk=deck.pk %}">add flashcard</a></p>
+
+<div>
+<p class="">
+    <a class="no-underline black hover-orange" href="{% url 'delete_deck' deck_pk=deck.pk %}">delete deck</a>
+</p>
+
+<a class="no-underline black hover-orange" href="{% url 'edit_deck' deck_pk=deck.pk %}">
+        <p>update deck name</p></a>
+
+
+
+{% endblock %}
+

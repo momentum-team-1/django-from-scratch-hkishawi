@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+<br>
+<a href="{% url 'deck_detail' deck_pk=flashcard.deck.pk %}">return to {{ flashcard.deck.deck_name }}!</a>
+
+<h3>answer:</h3>
+<h1 input_type:'checkbox'>{{ flashcard.answer }}</h1>
+
+<a href="{% url 'view_prompt' card_pk=flashcard.pk %}">return to prompt</a>
+
+<br>
+{% endblock %}

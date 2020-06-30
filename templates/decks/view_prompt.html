@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block scripts %}
+<script src="{% static 'js/reveal.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+<br>
+<a class="ma2 f6 fl hover-bg-orange hover-white b--orange link ba ph3 pv2 dib purple" href="{% url 'deck_detail' deck_pk=flashcard.deck.pk %}">return to "{{ flashcard.deck.deck_name }}"</a>
+<br>
+<h3>prompt:</h3>
+
+<div class="card-container">
+    <div class="front">{{ flashcard.prompt }}</div>
+	<div class="back">answer: {{flashcard.answer}}</div>
+</div>
+
+<a class="no-underline ma2 f6 fl hover-bg-purple hover-white b--purple link ba ph3 pv2 dib purple" href="{% url 'view_answer' card_pk=flashcard.pk %}">return to answer</a>
+<br>
+
+
+
+
+
+{% endblock %}

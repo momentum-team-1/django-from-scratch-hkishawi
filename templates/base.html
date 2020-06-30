@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block meta %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'icofont/icofont.min.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+    <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/reveal.js' %}" defer></script>
+</head>
+<body class="sans-serif ">
+  <div class="mw8 center ph4 pv6">
+      <div class="basebg">
+       <h1><a class="b no-underline title" href="{% url 'homepage' %}">quizlit</a></h1>
+        {% if user.is_authenticated %}
+          <div>
+            hello, {{ user.username }}!    
+            <a class="basetext no-underline black hover-purple no-underline" href="{% url 'auth_logout' %}">logout</a>
+            <a class="basetext b no-underline black hover-orange no-underline" href="{% url 'homepage' %}">home</a>
+          </div>
+    
+        {% endif %}
+       </div>         
+    <div class="bg-near-white">    
+    {% block content %}   
+    {% endblock %}
+    </div>
+    
+    <div class="bg-near-white">
+        <h6 class="center justified">© 2020, hk, llc. all rights reserved</h6>
+    </div>
+</body>
+</html>
+
